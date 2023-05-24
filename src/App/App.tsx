@@ -20,7 +20,6 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 
 const App = () => {
 	getOS();
-
 	dayjs.extend(localizedFormat);
 	dayjs.extend(relativeTime);
 
@@ -77,7 +76,7 @@ const App = () => {
 				<TourProvider
 					steps={steps}
 					styles={styles}
-					showNavigation={false}
+					showNavigation={true}
 					showBadge={false}>
 					<div
 						ref={ref}
@@ -87,7 +86,7 @@ const App = () => {
 							zIndex: fullScreenStatus ? 1 : undefined,
 							overflow: fullScreenStatus ? 'scroll' : undefined,
 						}}>
-						<AsideRoutes />
+						<AsideRoutes /> 
 						<Wrapper />
 					</div>
 					<Portal id='portal-notification'>

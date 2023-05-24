@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
@@ -12,9 +12,14 @@ import Logo from '../../../components/Logo';
 import useDarkMode from '../../../hooks/useDarkMode';
 import { useFormik } from 'formik';
 import AuthContext from '../../../contexts/authContext';
-import USERS, { getUserDataWithUsername } from '../../../common/data/userDummyData';
+import axios from '../../../api/axios';
+// import USERS, { getUserDataWithUsername } from '../../../common/data/userDummyData';
 import Spinner from '../../../components/bootstrap/Spinner';
 import Alert from '../../../components/bootstrap/Alert';
+import { use } from 'i18next';
+import { auto } from '@popperjs/core';
+
+
 
 interface ILoginHeaderProps {
 	isNewUser?: boolean;
@@ -40,29 +45,33 @@ interface ILoginProps {
 	isSignUp?: boolean;
 }
 const Login: FC<ILoginProps> = ({ isSignUp }) => {
-	const { setUser } = useContext(AuthContext);
+
+	const LOGIN_URL = '/api/v1/auth/authenticate';
+	const { setUser, setAuth } = useContext(AuthContext);
 
 	const { darkModeStatus } = useDarkMode();
 
 	const [signInPassword, setSignInPassword] = useState<boolean>(false);
 	const [singUpStatus, setSingUpStatus] = useState<boolean>(!!isSignUp);
-
+	
 	const navigate = useNavigate();
-	const handleOnClick = useCallback(() => navigate('/'), [navigate]);
+	const location = useLocation();
+	const handleOnClick = ()=>{}; // navigate('/'), [navigate]
+	const from = location.state?.from?.pathname || "/";
 
-	const usernameCheck = (username: string) => {
-		return !!getUserDataWithUsername(username);
-	};
+	// const usernameCheck = (username: string) => {
+	// 	return !!getUserDataWithUsername(username);
+	// };
 
-	const passwordCheck = (username: string, password: string) => {
-		return getUserDataWithUsername(username).password === password;
-	};
+	// const passwordCheck = (username: string, password: string) => {
+	// 	return getUserDataWithUsername(username).password === password;
+	// };
 
 	const formik = useFormik({
 		enableReinitialize: true,
 		initialValues: {
-			loginUsername: USERS.JOHN.username,
-			loginPassword: USERS.JOHN.password,
+			loginUsername: "",
+			loginPassword: "",
 		},
 		validate: (values) => {
 			const errors: { loginUsername?: string; loginPassword?: string } = {};
@@ -78,18 +87,59 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 			return errors;
 		},
 		validateOnChange: false,
-		onSubmit: (values) => {
-			if (usernameCheck(values.loginUsername)) {
-				if (passwordCheck(values.loginUsername, values.loginPassword)) {
-					if (setUser) {
-						setUser(values.loginUsername);
+		onSubmit: async (values) => {
+			try{
+				setIsLoading(true);
+				await axios.post(LOGIN_URL, JSON.stringify({
+						'member_id' : values.loginUsername,
+						'member_password' : values.loginPassword
+					}), {
+						headers: {'Content-Type':'application/json'},
+						withCredentials : true
 					}
+				).then((response) => {
+					setIsLoading(false);
+					const accessToken = response.data.accessToken;
+					const roles = response.data.role;
+					const user = values.loginUsername;
+					if(setUser){
+						setUser(user);
+					}
+					if(setAuth){
+						console.log(accessToken);
+						setAuth({id:user, roles:roles, accessToken:accessToken});
+						navigate(from, {replace:true});
+						// handleOnClick();
+					}
+				}).catch((err) => {
+					console.log(err.response);
+					if(!err?.response){
 
-					handleOnClick();
-				} else {
+					}else if(err.response?.status == 400){
+
+					}else if(err.response?.status == 401){
+						
+					}else{
+
+					}
+					setIsLoading(false);
 					formik.setFieldError('loginPassword', 'Username and password do not match.');
-				}
+				});
+			}catch(err){
+				
 			}
+
+			// if (usernameCheck(values.loginUsername)) {
+			// 	if (passwordCheck(values.loginUsername, values.loginPassword)) {
+					// if (setUser) {
+					// 	setUser(values.loginUsername);
+					// }
+
+			// 		
+			// 	} else {
+			// 		formik.setFieldError('loginPassword', 'Username and password do not match.');
+			// 	}
+			// }
 		},
 	});
 
@@ -97,15 +147,15 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 	const handleContinue = () => {
 		setIsLoading(true);
 		setTimeout(() => {
-			if (
-				!Object.keys(USERS).find(
-					(f) => USERS[f].username.toString() === formik.values.loginUsername,
-				)
-			) {
-				formik.setFieldError('loginUsername', 'No such user found in the system.');
-			} else {
-				setSignInPassword(true);
-			}
+			// if (
+			// 	!Object.keys(USERS).find(
+			// 		(f) => USERS[f].username.toString() === formik.values.loginUsername,
+			// 	)
+			// ) {
+			// 	formik.setFieldError('loginUsername', 'No such user found in the system.');
+			// } else {
+			// 	setSignInPassword(true);
+			// }
 			setIsLoading(false);
 		}, 1000);
 	};
@@ -170,7 +220,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 
 								<LoginHeader isNewUser={singUpStatus} />
 
-								<Alert isLight icon='Lock' isDismissible>
+								{/* <Alert isLight icon='Lock' isDismissible>
 									<div className='row'>
 										<div className='col-12'>
 											<strong>Username:</strong> {USERS.JOHN.username}
@@ -179,7 +229,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 											<strong>Password:</strong> {USERS.JOHN.password}
 										</div>
 									</div>
-								</Alert>
+								</Alert> */}
 								<form className='row g-4'>
 									{singUpStatus ? (
 										<>
@@ -252,17 +302,19 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 														}}
 													/>
 												</FormGroup>
-												{signInPassword && (
+												{/* {signInPassword && (
 													<div className='text-center h4 mb-3 fw-bold'>
 														Hi, {formik.values.loginUsername}.
 													</div>
-												)}
+												)} */}
+											</div>
+											<div className='col-12'>
 												<FormGroup
 													id='loginPassword'
 													isFloating
 													label='Password'
 													className={classNames({
-														'd-none': !signInPassword,
+														'd-none': signInPassword,
 													})}>
 													<Input
 														type='password'
@@ -280,7 +332,18 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 												</FormGroup>
 											</div>
 											<div className='col-12'>
-												{!signInPassword ? (
+
+													<Button
+														color='warning'
+														className='w-100 py-3'
+														onClick={formik.handleSubmit}>
+														{isLoading && (
+															<Spinner isSmall inButton isGrow />
+														)}
+														Login
+													</Button>
+
+												{/* {!signInPassword ? (
 													<Button
 														color='warning'
 														className='w-100 py-3'
@@ -298,7 +361,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 														onClick={formik.handleSubmit}>
 														Login
 													</Button>
-												)}
+												)} */}
 											</div>
 										</>
 									)}

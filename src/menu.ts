@@ -1,3 +1,27 @@
+export const ReedMenu = {
+	home: {
+		id: 'home',
+		text: 'HOME',
+		path: '/',
+		icon: 'Home',
+		subMenu: null,
+	},
+	members: {
+		id: 'members',
+		text: '회원정보',
+		path: 'members',
+		icon: 'Person',
+		subMenu: {
+			memberlist: {
+				id: 'memberlist',
+				text: '회원목록',
+				path: 'members/list',
+				icon: 'List',
+			},
+		},
+	}
+}
+
 export const summaryPageTopMenu = {
 	intro: { id: 'intro', text: 'Intro', path: '#intro', icon: 'Vrpano', subMenu: null },
 	bootstrap: {
@@ -33,11 +57,12 @@ export const summaryPageTopMenu = {
 export const dashboardPagesMenu = {
 	dashboard: {
 		id: 'dashboard',
-		text: 'Dashboard',
+		text: '',
 		path: '/',
 		icon: 'Dashboard',
 		subMenu: null,
-	},
+	}
+	,
 	dashboardProject: {
 		id: 'dashboardProject',
 		text: 'Dashboard Projects',
@@ -401,13 +426,13 @@ export const demoPagesMenu = {
 	login: {
 		id: 'login',
 		text: 'Login',
-		path: 'auth-pages/login',
+		path: '/login',
 		icon: 'Login',
 	},
 	signUp: {
 		id: 'signUp',
 		text: 'Sign Up',
-		path: 'auth-pages/sign-up',
+		path: 'signup',
 		icon: 'PersonAdd',
 	},
 	page404: {

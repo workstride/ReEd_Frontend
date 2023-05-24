@@ -37,7 +37,7 @@ import Select from '../../../components/bootstrap/forms/Select';
 import Popovers from '../../../components/bootstrap/Popovers';
 
 import data from '../../../common/data/dummyProductData';
-import { demoPagesMenu } from '../../../menu';
+import { demoPagesMenu, ReedMenu } from '../../../menu';
 import PaginationButtons, {
 	dataPagination,
 	PER_COUNT,
@@ -72,7 +72,7 @@ const ListBoxedPage = () => {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		onSubmit: (values) => {
 			setFilterMenu(false);
-			// alert(JSON.stringify(values, null, 2));
+			alert(JSON.stringify(values, null, 2));
 		},
 	});
 
@@ -98,163 +98,8 @@ const ListBoxedPage = () => {
 	const { selectTable, SelectAllCheck } = useSelectTable(onCurrentPageItems);
 
 	return (
-		<PageWrapper title={demoPagesMenu.listPages.subMenu.listBoxed.text}>
-			<SubHeader>
-				<SubHeaderLeft>
-					<Avatar srcSet={UserImageWebp} src={UserImage} size={32} />
-					<span>
-						<strong>Report by</strong> Timothy J. Doe
-					</span>
-				</SubHeaderLeft>
-				<SubHeaderRight>
-					{(!!formik.values.minPrice || !!formik.values.maxPrice) && (
-						<CommonFilterTag
-							title='Price'
-							text={`${formik.values.minPrice || '0'} to ${
-								formik.values.maxPrice || 'no limit'
-							}`}
-						/>
-					)}
-
-					{!!formik.values.categoryName && (
-						<CommonFilterTag title='Category' text={formik.values.categoryName} />
-					)}
-
-					{(formik.values.companyA ||
-						formik.values.companyB ||
-						formik.values.companyC ||
-						formik.values.companyD) && (
-						<CommonFilterTag
-							title='Store'
-							text={
-								(formik.values.companyA ? 'Company A, ' : '') +
-								(formik.values.companyB ? 'Company B, ' : '') +
-								(formik.values.companyC ? 'Company C, ' : '') +
-								(formik.values.companyD ? 'Company D ' : '')
-							}
-						/>
-					)}
-					<SubheaderSeparator />
-					<Dropdown isOpen={filterMenu} setIsOpen={setFilterMenu}>
-						<DropdownToggle hasIcon={false}>
-							<Button icon='Filter' color='primary' isLight data-tour='filter'>
-								Filter
-								<span
-									className={classNames(
-										'position-absolute',
-										'top-0 start-95',
-										'translate-middle',
-										'badge',
-										'rounded-pill',
-										'bg-danger',
-										'border border-2',
-										{
-											'border-white': !darkModeStatus,
-											'border-dark': darkModeStatus,
-										},
-									)}>
-									2/3
-									<span className='visually-hidden'>filter</span>
-								</span>
-							</Button>
-						</DropdownToggle>
-						<DropdownMenu
-							isAlignmentEnd
-							size='lg'
-							isCloseAfterLeave={false}
-							data-tour='filter-menu'>
-							<div className='container py-2'>
-								<form className='row g-3' onSubmit={formik.handleSubmit}>
-									<div className='col-12'>
-										<FormGroup>
-											<Label htmlFor='minPrice'>Price</Label>
-											<InputGroup>
-												<Input
-													id='minPrice'
-													ariaLabel='Minimum price'
-													placeholder='Min.'
-													onChange={formik.handleChange}
-													value={formik.values.minPrice}
-												/>
-												<InputGroupText>to</InputGroupText>
-												<Input
-													id='maxPrice'
-													ariaLabel='Maximum price'
-													placeholder='Max.'
-													onChange={formik.handleChange}
-													value={formik.values.maxPrice}
-												/>
-											</InputGroup>
-										</FormGroup>
-									</div>
-									<div className='col-12'>
-										<FormGroup>
-											<Label htmlFor='categoryName'>Category</Label>
-											<Select
-												id='categoryName'
-												ariaLabel='Category'
-												placeholder='Category Name'
-												list={[
-													{ value: '3D Shapes', text: '3D Shapes' },
-													{ value: 'Illustrator', text: 'Illustrator' },
-													{ value: 'Photo', text: 'Photo' },
-												]}
-												onChange={formik.handleChange}
-												value={formik.values.categoryName}
-											/>
-										</FormGroup>
-									</div>
-									<div className='col-12'>
-										<FormGroup>
-											<Label>Store</Label>
-											<ChecksGroup>
-												<Checks
-													id='companyA'
-													label='Company A'
-													onChange={formik.handleChange}
-													checked={formik.values.companyA}
-												/>
-												<Checks
-													id='companyB'
-													label='Company B'
-													onChange={formik.handleChange}
-													checked={formik.values.companyB}
-												/>
-												<Checks
-													id='companyC'
-													label='Company C'
-													onChange={formik.handleChange}
-													checked={formik.values.companyC}
-												/>
-												<Checks
-													id='companyD'
-													label='Company D'
-													onChange={formik.handleChange}
-													checked={formik.values.companyD}
-												/>
-											</ChecksGroup>
-										</FormGroup>
-									</div>
-									<div className='col-6'>
-										<Button
-											color='primary'
-											isOutline
-											className='w-100'
-											onClick={formik.resetForm}>
-											Reset
-										</Button>
-									</div>
-									<div className='col-6'>
-										<Button color='primary' className='w-100' type='submit'>
-											Filter
-										</Button>
-									</div>
-								</form>
-							</div>
-						</DropdownMenu>
-					</Dropdown>
-				</SubHeaderRight>
-			</SubHeader>
+		<PageWrapper title={ReedMenu.members.subMenu.memberlist.text}>
+			
 			<Page>
 				<Card stretch data-tour='list'>
 					<CardHeader>

@@ -6,8 +6,9 @@ import {
 	demoPagesMenu,
 	gettingStartedPagesMenu,
 	pageLayoutTypesPagesMenu,
+	ReedMenu,
 } from '../menu';
-import Login from '../pages/presentation/auth/Login';
+// import Login from '../pages/presentation/auth/Login';
 
 const LANDING = {
 	DASHBOARD: lazy(() => import('../pages/presentation/dashboard/DashboardPage')),
@@ -190,6 +191,10 @@ const EXTRA = {
 };
 
 const presentation: RouteProps[] = [
+	{
+		path: ReedMenu.members.subMenu.memberlist.path,
+		element: <LIST.BOXED />,
+	},
 	/**
 	 * Landing
 	 */
@@ -288,18 +293,18 @@ const presentation: RouteProps[] = [
 	/**
 	 * Auth Page
 	 */
-	{
-		path: demoPagesMenu.page404.path,
-		element: <AUTH.PAGE_404 />,
-	},
-	{
-		path: demoPagesMenu.login.path,
-		element: <Login />,
-	},
-	{
-		path: demoPagesMenu.signUp.path,
-		element: <Login isSignUp />,
-	},
+	// {
+	// 	path: demoPagesMenu.page404.path,
+	// 	element: <AUTH.PAGE_404 />,
+	// },
+	// {
+	// 	path: demoPagesMenu.login.path,
+	// 	element: <Login />,
+	// },
+	// {
+	// 	path: demoPagesMenu.signUp.path,
+	// 	element: <Login isSignUp />,
+	// },
 
 	/**
 	 * App
@@ -811,6 +816,9 @@ const documentation: RouteProps[] = [
 		element: <EXTRA.HOOKS />,
 	},
 ];
+
 const contents = [...presentation, ...documentation];
+
+
 
 export default contents;

@@ -11,7 +11,10 @@ const DefaultHeader = () => {
 		<Header>
 			<HeaderLeft>
 				<Navigation
-					menu={{ ...pageLayoutTypesPagesMenu, ...componentPagesMenu }}
+					// menu={{ ...pageLayoutTypesPagesMenu, ...componentPagesMenu }}
+					menu={
+						{}
+					}
 					id='header-top-menu'
 					horizontal={
 						!!width && width >= Number(process.env.REACT_APP_MOBILE_BREAKPOINT_SIZE)

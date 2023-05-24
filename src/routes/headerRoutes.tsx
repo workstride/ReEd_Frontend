@@ -141,38 +141,38 @@ const headers: RouteProps[] = [
 		path: pageLayoutTypesPagesMenu.pageLayout.subMenu.onlyHeader.path,
 		element: <PageLayoutHeader />,
 	},
-	{
-		path: `${componentPagesMenu.components.path}/*`,
-		element: <ComponentsHeader />,
-	},
-	{
-		path: `${componentPagesMenu.forms.path}/*`,
-		element: <FormHeader />,
-	},
-	{
-		path: `${componentPagesMenu.charts.path}/*`,
-		element: <ChartsHeader />,
-	},
-	{
-		path: `${componentPagesMenu.content.path}/*`,
-		element: <ContentHeader />,
-	},
-	{
-		path: `${componentPagesMenu.utilities.path}/*`,
-		element: <UtilitiesHeader />,
-	},
-	{
-		path: `${componentPagesMenu.icons.path}/*`,
-		element: <IconHeader />,
-	},
-	{
-		path: `${gettingStartedPagesMenu.gettingStarted.path}/*`,
-		element: <DocumentationHeader />,
-	},
-	{
-		path: `${gettingStartedPagesMenu.routes.path}/*`,
-		element: <DocumentationHeader />,
-	},
+	// {
+	// 	path: `${componentPagesMenu.components.path}/*`,
+	// 	element: <ComponentsHeader />,
+	// },
+	// {
+	// 	path: `${componentPagesMenu.forms.path}/*`,
+	// 	element: <FormHeader />,
+	// },
+	// {
+	// 	path: `${componentPagesMenu.charts.path}/*`,
+	// 	element: <ChartsHeader />,
+	// },
+	// {
+	// 	path: `${componentPagesMenu.content.path}/*`,
+	// 	element: <ContentHeader />,
+	// },
+	// {
+	// 	path: `${componentPagesMenu.utilities.path}/*`,
+	// 	element: <UtilitiesHeader />,
+	// },
+	// {
+	// 	path: `${componentPagesMenu.icons.path}/*`,
+	// 	element: <IconHeader />,
+	// },
+	// {
+	// 	path: `${gettingStartedPagesMenu.gettingStarted.path}/*`,
+	// 	element: <DocumentationHeader />,
+	// },
+	// {
+	// 	path: `${gettingStartedPagesMenu.routes.path}/*`,
+	// 	element: <DocumentationHeader />,
+	// },
 	{
 		path: `*`,
 		element: <DefaultHeader />,

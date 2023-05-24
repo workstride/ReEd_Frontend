@@ -26,19 +26,39 @@ import CommonDashboardWaitingAnswer from './common/CommonDashboardWaitingAnswer'
 import CommonMyWallet from '../../_common/CommonMyWallet';
 import CommonDashboardTopSeller from './common/CommonDashboardTopSeller';
 import ThemeContext from '../../../contexts/themeContext';
+import AuthContext from '../../../contexts/authContext';
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
+import { useNavigate } from 'react-router-dom';
 
 const DashboardPage = () => {
+	const {auth, setAuth} = useContext(AuthContext);
+	
 	const { mobileDesign } = useContext(ThemeContext);
 	/**
 	 * Tour Start
 	 */
 	const { setIsOpen } = useTour();
+	const axiosPrivate = useAxiosPrivate();
+	
+
 	useEffect(() => {
+
+		const refreshTokenTest = async () => {
+			try{
+				const response = await axiosPrivate.get('/api/v1/member/list');
+				// console.log("logout success : " + JSON.stringify(response.data));
+			}catch(err){
+				
+			}
+		};
+	
+		refreshTokenTest();
+
 		if (localStorage.getItem('tourModalStarted') !== 'shown' && !mobileDesign) {
 			setTimeout(() => {
 				setIsOpen(true);
 				localStorage.setItem('tourModalStarted', 'shown');
-			}, 7000);
+			}, 1000);
 		}
 		return () => {};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,13 +85,13 @@ const DashboardPage = () => {
 						))}
 					</ButtonGroup>
 				</SubHeaderLeft>
-				<SubHeaderRight>
+				{/* <SubHeaderRight>
 					<CommonAvatarTeam>
 						<strong>Marketing</strong> Team
 					</CommonAvatarTeam>
-				</SubHeaderRight>
+				</SubHeaderRight> */}
 			</SubHeader>
-			<Page container='fluid'>
+			{/* <Page container='fluid'>
 				<div className='row'>
 					<div className='col-12'>
 						<CommonDashboardAlert />
@@ -112,7 +132,7 @@ const DashboardPage = () => {
 						<CommonDashboardTopSeller />
 					</div>
 				</div>
-			</Page>
+			</Page> */}
 		</PageWrapper>
 	);
 };

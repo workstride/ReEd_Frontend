@@ -11,21 +11,40 @@ import { NavigationLine } from '../Navigation/Navigation';
 import Icon from '../../components/icon/Icon';
 import useNavigationItemHandle from '../../hooks/useNavigationItemHandle';
 import AuthContext from '../../contexts/authContext';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 const User = () => {
-	const { userData, setUser } = useContext(AuthContext);
-
+	const {auth, setAuth} = useContext(AuthContext);
 	const navigate = useNavigate();
 	const handleItem = useNavigationItemHandle();
 	const { darkModeStatus, setDarkModeStatus } = useDarkMode();
 
-	const [collapseStatus, setCollapseStatus] = useState<boolean>(false);
+	const [collapseStatus, setCollapseStatus] = useState<boolean>(true);
 
 	const { t } = useTranslation(['translation', 'menu']);
+	const axiosPrivate = useAxiosPrivate();
+	const LOGOUT_URL = '/api/v1/auth/logout';
+	const logoutOnClick = async () => {
+		try{
+			await axiosPrivate.post(LOGOUT_URL, {
+			}).then((response) => {
+				// console.log("logout success : " + response.data);
+				if(setAuth){
+					setAuth({});
+					navigate(`../${demoPagesMenu.login.path}`);
+				}
+			}).catch(err => {
+				navigate(`../${demoPagesMenu.login.path}`);
+			});
+			
+		}catch(err){
+			
+		}
+	}
 
 	return (
 		<>
-			<div
+			{/* <div
 				className={classNames('user', { open: collapseStatus })}
 				role='presentation'
 				onClick={() => setCollapseStatus(!collapseStatus)}>
@@ -66,7 +85,7 @@ const User = () => {
 						{darkModeStatus ? 'Dark Mode' : 'Light Mode'}
 					</Button>
 				</DropdownItem>
-			</DropdownMenu>
+			</DropdownMenu> */}
 
 			<Collapse isOpen={collapseStatus} className='user-menu'>
 				<nav aria-label='aside-bottom-user-menu'>
@@ -76,7 +95,7 @@ const User = () => {
 							className='navigation-item cursor-pointer'
 							onClick={() =>
 								navigate(
-									`../${demoPagesMenu.appointment.subMenu.employeeID.path}/${userData?.id}`,
+									`../${demoPagesMenu.appointment.subMenu.employeeID.path}/${auth?.id}`,
 									// @ts-ignore
 									handleItem(),
 								)
@@ -90,7 +109,7 @@ const User = () => {
 								</span>
 							</span>
 						</div>
-						<div
+						{/* <div
 							role='presentation'
 							className='navigation-item cursor-pointer'
 							onClick={() => {
@@ -111,7 +130,7 @@ const User = () => {
 									</span>
 								</span>
 							</span>
-						</div>
+						</div> */}
 					</div>
 				</nav>
 				<NavigationLine />
@@ -120,12 +139,7 @@ const User = () => {
 						<div
 							role='presentation'
 							className='navigation-item cursor-pointer'
-							onClick={() => {
-								if (setUser) {
-									setUser('');
-								}
-								navigate(`../${demoPagesMenu.login.path}`);
-							}}>
+							onClick={logoutOnClick}>
 							<span className='navigation-link navigation-link-pill'>
 								<span className='navigation-link-info'>
 									<Icon icon='Logout' className='navigation-icon' />

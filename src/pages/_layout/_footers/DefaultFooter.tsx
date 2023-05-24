@@ -4,24 +4,24 @@ import useDarkMode from '../../../hooks/useDarkMode';
 import Footer from '../../../layout/Footer/Footer';
 
 const DefaultFooter = () => {
-	const { darkModeStatus } = useDarkMode();
+	// const { darkModeStatus } = useDarkMode();
 
 	return (
 		<Footer>
 			<div className='container-fluid'>
 				<div className='row'>
 					<div className='col'>
-						<span className='fw-light'>Copyright © 2023 - Version 4.2.0</span>
+						<span className='fw-light'>Copyright © 2023 - Reed 1.0.0</span>
 					</div>
 					<div className='col-auto'>
-						<a
+						{/* <a
 							href='/'
 							className={classNames('text-decoration-none', {
 								'link-dark': !darkModeStatus,
 								'link-light': darkModeStatus,
 							})}>
 							<small className='fw-bold'>Facit Theme</small>
-						</a>
+						</a> */}
 					</div>
 				</div>
 			</div>

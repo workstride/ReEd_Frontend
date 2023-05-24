@@ -7,6 +7,7 @@ import CommonHeaderRight from './CommonHeaderRight';
 
 const PageLayoutHeader = () => {
 	const { width } = useDeviceScreen();
+	
 	return (
 		<Header>
 			<HeaderLeft>
