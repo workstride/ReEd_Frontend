@@ -24,7 +24,8 @@ interface IAuthContextProviderProps {
 export const AuthContextProvider: FC<IAuthContextProviderProps> = ({ children }) => {
 	const [user, setUser] = useState<string>(localStorage.getItem('facit_authUsername') || '');
 	const [userData, setUserData] = useState<Partial<IUserProps>>({});
-	const [auth, setAuth] = useState<AuthData>(JSON.parse(localStorage.getItem('auth') || ''));
+	const initAuth = JSON.parse(localStorage.getItem('auth') || JSON.stringify({ id: "", pw: "", roles: [], accessToken: "" }));
+	const [auth, setAuth] = useState<AuthData>(initAuth);
 	
 	useEffect(() => {
 		localStorage.setItem('facit_authUsername', user);
