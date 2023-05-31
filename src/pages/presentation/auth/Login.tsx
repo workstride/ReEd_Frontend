@@ -28,15 +28,15 @@ const LoginHeader: FC<ILoginHeaderProps> = ({ isNewUser }) => {
 	if (isNewUser) {
 		return (
 			<>
-				<div className='text-center h1 fw-bold mt-5'>Create Account,</div>
-				<div className='text-center h4 text-muted mb-5'>Sign up to get started!</div>
+				<div className='text-center h1 fw-bold mt-5'>계정 생성</div>
+				<div className='text-center h4 text-muted mb-5'>우리와 함께 여정을 떠나볼까요?</div>
 			</>
 		);
 	}
 	return (
 		<>
-			<div className='text-center h1 fw-bold mt-5'>Welcome,</div>
-			<div className='text-center h4 text-muted mb-5'>Sign in to continue!</div>
+			<div className='text-center h1 fw-bold mt-5'>환영합니다!</div>
+			<div className='text-center h4 text-muted mb-5'>로그인을 해주세요</div>
 		</>
 	);
 };
@@ -77,11 +77,11 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 			const errors: { loginUsername?: string; loginPassword?: string } = {};
 
 			if (!values.loginUsername) {
-				errors.loginUsername = 'Required';
+				errors.loginUsername = '필수 입력 사항입니다.';
 			}
 
 			if (!values.loginPassword) {
-				errors.loginPassword = 'Required';
+				errors.loginPassword = '필수 입력 사항입니다.';
 			}
 
 			return errors;
@@ -98,6 +98,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 						withCredentials : true
 					}
 				).then((response) => {
+					console.log(response.data);
 					setIsLoading(false);
 					const accessToken = response.data.accessToken;
 					const roles = response.data.role;
@@ -163,7 +164,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 	return (
 		<PageWrapper
 			isProtected={false}
-			title={singUpStatus ? 'Sign Up' : 'Login'}
+			title={singUpStatus ? '로그인' : 'Login'}
 			className={classNames({ 'bg-dark': !singUpStatus, 'bg-light': singUpStatus })}>
 			<Page className='p-0'>
 				<div className='row h-100 align-items-center justify-content-center'>
@@ -199,7 +200,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 													setSignInPassword(false);
 													setSingUpStatus(!singUpStatus);
 												}}>
-												Login
+												로그인
 											</Button>
 										</div>
 										<div className='col'>
@@ -212,7 +213,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 													setSignInPassword(false);
 													setSingUpStatus(!singUpStatus);
 												}}>
-												Sign Up
+												회원가입
 											</Button>
 										</div>
 									</div>
@@ -235,9 +236,17 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 										<>
 											<div className='col-12'>
 												<FormGroup
+													id='signup-id'
+													isFloating
+													label='아이디'>
+													<Input type='text' autoComplete='off' />
+												</FormGroup>
+											</div>
+											<div className='col-12'>
+												<FormGroup
 													id='signup-email'
 													isFloating
-													label='Your email'>
+													label='이메일'>
 													<Input type='email' autoComplete='email' />
 												</FormGroup>
 											</div>
@@ -245,23 +254,23 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 												<FormGroup
 													id='signup-name'
 													isFloating
-													label='Your name'>
+													label='이름'>
 													<Input autoComplete='given-name' />
 												</FormGroup>
 											</div>
 											<div className='col-12'>
 												<FormGroup
-													id='signup-surname'
+													id='signup-tel'
 													isFloating
-													label='Your surname'>
-													<Input autoComplete='family-name' />
+													label='전화번호'>
+													<Input autoComplete='tel' />
 												</FormGroup>
 											</div>
 											<div className='col-12'>
 												<FormGroup
 													id='signup-password'
 													isFloating
-													label='Password'>
+													label='비밀번호'>
 													<Input
 														type='password'
 														autoComplete='password'
@@ -273,7 +282,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 													color='info'
 													className='w-100 py-3'
 													onClick={handleOnClick}>
-													Sign Up
+													회원가입
 												</Button>
 											</div>
 										</>
@@ -283,7 +292,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 												<FormGroup
 													id='loginUsername'
 													isFloating
-													label='Your email or username'
+													label='아이디 또는 이메일'
 													className={classNames({
 														'd-none': signInPassword,
 													})}>
@@ -312,7 +321,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 												<FormGroup
 													id='loginPassword'
 													isFloating
-													label='Password'
+													label='비밀번호'
 													className={classNames({
 														'd-none': signInPassword,
 													})}>
@@ -340,7 +349,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 														{isLoading && (
 															<Spinner isSmall inButton isGrow />
 														)}
-														Login
+														로그인
 													</Button>
 
 												{/* {!signInPassword ? (
@@ -366,62 +375,10 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 										</>
 									)}
 
-									{/* BEGIN :: Social Login */}
-									{!signInPassword && (
-										<>
-											<div className='col-12 mt-3 text-center text-muted'>
-												OR
-											</div>
-											<div className='col-12 mt-3'>
-												<Button
-													isOutline
-													color={darkModeStatus ? 'light' : 'dark'}
-													className={classNames('w-100 py-3', {
-														'border-light': !darkModeStatus,
-														'border-dark': darkModeStatus,
-													})}
-													icon='CustomApple'
-													onClick={handleOnClick}>
-													Sign in with Apple
-												</Button>
-											</div>
-											<div className='col-12'>
-												<Button
-													isOutline
-													color={darkModeStatus ? 'light' : 'dark'}
-													className={classNames('w-100 py-3', {
-														'border-light': !darkModeStatus,
-														'border-dark': darkModeStatus,
-													})}
-													icon='CustomGoogle'
-													onClick={handleOnClick}>
-													Continue with Google
-												</Button>
-											</div>
-										</>
-									)}
-									{/* END :: Social Login */}
+									
 								</form>
 							</CardBody>
 						</Card>
-						<div className='text-center'>
-							<a
-								href='/'
-								className={classNames('text-decoration-none me-3', {
-									'link-light': singUpStatus,
-									'link-dark': !singUpStatus,
-								})}>
-								Privacy policy
-							</a>
-							<a
-								href='/'
-								className={classNames('link-light text-decoration-none', {
-									'link-light': singUpStatus,
-									'link-dark': !singUpStatus,
-								})}>
-								Terms of use
-							</a>
-						</div>
 					</div>
 				</div>
 			</Page>

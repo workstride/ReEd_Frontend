@@ -4,7 +4,8 @@
 build/**
 
 node_modules/**
-
+node_modules/.cache
+node_modules/.cache/default-development/**
 # Logs
 logs
 *.log

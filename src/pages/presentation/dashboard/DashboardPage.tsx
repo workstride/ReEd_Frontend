@@ -46,7 +46,7 @@ const DashboardPage = () => {
 		const refreshTokenTest = async () => {
 			try{
 				const response = await axiosPrivate.get('/api/v1/member/list');
-				// console.log("logout success : " + JSON.stringify(response.data));
+				console.log("logout success : " + JSON.stringify(response.data));
 			}catch(err){
 				
 			}
