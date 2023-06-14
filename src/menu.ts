@@ -19,7 +19,14 @@ export const ReedMenu = {
 				icon: 'List',
 			},
 		},
-	}
+	},
+	attendance: {
+		id: 'attendance',
+		text: '출석',
+		path: 'attendance',
+		icon: 'CheckBox',
+		subMenu: null,
+	},
 }
 
 export const summaryPageTopMenu = {

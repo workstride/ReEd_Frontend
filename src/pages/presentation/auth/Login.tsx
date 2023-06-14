@@ -91,8 +91,8 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 			try{
 				setIsLoading(true);
 				await axios.post(LOGIN_URL, JSON.stringify({
-						'member_id' : values.loginUsername,
-						'member_password' : values.loginPassword
+						'memberId' : values.loginUsername,
+						'memberPassword' : values.loginPassword
 					}), {
 						headers: {'Content-Type':'application/json'},
 						withCredentials : true
