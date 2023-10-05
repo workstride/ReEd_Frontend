@@ -1,0 +1,33 @@
+.menuBar { display: flex; 
+    position: fixed; top: 0; 
+    left: 0; 
+    background-color: #121212; 
+    color: #fff; height: 100%; 
+    width: 200px; z-index: 1000; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+} 
+
+.menuBar ul { list-style: none; 
+    padding: 0; 
+    flex-grow: 1; 
+} 
+
+.menuBar li { padding: 10px 20px; 
+    cursor: pointer; 
+    text-align: center; 
+} 
+
+.menuBar li:hover { background-color: #555; } 
+
+.addSchoolButton { position: fixed; 
+    right: 20px; 
+    bottom: 20px; 
+    padding: 10px 20px; 
+    background-color: #557CDF; 
+    color: #fff; border: none; 
+    cursor: pointer; 
+} 
+
+.addSchoolButton:hover { background-color: #3358A4; } 
