@@ -19,6 +19,11 @@ function MenuBar(props) {
             공지사항
           </Link>
         </li>
+        <li>
+          <Link to="/qr" style={{ color: "white" }}>
+            출석
+          </Link>
+        </li>
       </ul>
     </div>
   );

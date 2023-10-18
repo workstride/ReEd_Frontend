@@ -25,7 +25,8 @@ img{
 }
 
 body {
-  background-image: url("https://s3.ap-northeast-2.amazonaws.com/icunow.co.kr/2021/12/13170823/patternpad5.jpg");
+  background-image: url("C:\나르샤\프론트\ReEd_Frontend\public\image\background.png");
+  background-repeat: no-repeat;
   -webkit-user-select:none;
   -moz-user-select:none;
   -ms-user-select:none;
@@ -49,13 +50,16 @@ body {
 
 .menuBar li:hover { background-color: #555; } 
 
-.addSchoolButton { position: fixed; 
+.addSchoolButton { 
+  position: fixed; 
   right: 20px; 
   bottom: 20px; 
-  padding: 10px 20px; 
+  padding: 20px 40px; 
   background-color: #557CDF; 
   color: #fff; border: none; 
   cursor: pointer; 
+  font-size: 20px;
+  font-weight: bold;
 } 
 
 .addSchoolButton:hover { background-color: #3358A4; }
@@ -105,15 +109,5 @@ body {
         justify-content: center; /* 가로 방향 중앙 정렬 */
         align-items: center; /* 세로 방향 중앙 정렬 */
         color:white;
-  }
-  .noSchoolContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .noSchoolText {
-    font-size: 30px;
-    color: white;
   }
   

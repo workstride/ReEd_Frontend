@@ -16,6 +16,7 @@ function SignIn(props) {
   };
 
   const handleSignIn = async () => {
+    localStorage.clear();
     try {
       const data = {
         email: email,
@@ -30,7 +31,11 @@ function SignIn(props) {
         const { accessToken, refreshToken, role } = response.data;
 
         localStorage.setItem("Access-Token", accessToken);
+        localStorage.setItem("Refresh-Token", refreshToken);
+        localStorage.setItem("Role", role);
         if (role === "HEAD_TEACHER") {
+          history.push("/main");
+        } else if (role === "TEACHER") {
           history.push("/main");
         } else {
           alert("권한이 없습니다.");
