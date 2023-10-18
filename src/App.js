@@ -1,13 +1,19 @@
 import React from "react";
-import SigIn from "./componets/sigin/SigIn";
-import Main from "./componets/main/Main";
-import Routes from "./Routes.js";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import SignIn from "./sigin/SignIn";
+import Main from "./main/Main";
+import AnnouncementForm from "./announcement/Announcement";
 
 function App() {
   return (
-    <div className="App">
-      <Routes />
-    </div>
+    <Router>
+      <div className="App">
+        <Route exact path="/" render={() => <Redirect to="/signin" />} />
+        <Route path="/signin" component={SignIn} />
+        <Route path="/main" component={Main} />
+        <Route path="/announcement" component={AnnouncementForm} />
+      </div>
+    </Router>
   );
 }
 

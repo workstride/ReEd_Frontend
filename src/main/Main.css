@@ -1,0 +1,119 @@
+.menuBar { 
+    display: flex; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    background-color: #121212; 
+    color: #fff; 
+    height: 100%; 
+    width: 15%; 
+    z-index: 1000;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+		border: 2px solid rgba(255,255,255,0.2);
+		background: rgba(255,255,255,0.4);
+		border-radius: 10px;
+		z-index: 2;
+		overflow: hidden;
+		backdrop-filter: blur(5px);
+  	-webkit-backdrop-filter: blur(5px);
+}
+
+img{
+  pointer-events: none;
+}
+
+body {
+  background-image: url("https://s3.ap-northeast-2.amazonaws.com/icunow.co.kr/2021/12/13170823/patternpad5.jpg");
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none
+  }
+  
+  .mainContainer {
+    height: 100vh; /* 전체 화면 높이로 설정 */
+  }
+  
+
+.menuBar ul { list-style: none; 
+  padding: 0; 
+  flex-grow: 1; 
+} 
+
+.menuBar li { padding: 10px 20px; 
+  cursor: pointer; 
+  text-align: center; 
+} 
+
+.menuBar li:hover { background-color: #555; } 
+
+.addSchoolButton { position: fixed; 
+  right: 20px; 
+  bottom: 20px; 
+  padding: 10px 20px; 
+  background-color: #557CDF; 
+  color: #fff; border: none; 
+  cursor: pointer; 
+} 
+
+.addSchoolButton:hover { background-color: #3358A4; }
+
+
+
+.box {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    width: auto; 
+    height: auto; 
+    background-color: gray; 
+    background: rgba( 255, 255, 255, 0.25 );
+    background: rgba( 18, 18, 18, 0.8 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .name {
+     font-size:18px;
+     margin-bottom:10px;
+  }
+  
+  .introduction {
+     font-size:14px;
+  }
+  
+  .schoolBoxContainer {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .schoolBox {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* 가로 방향 중앙 정렬 */
+        align-items: center; /* 세로 방향 중앙 정렬 */
+        color:white;
+  }
+  .noSchoolContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .noSchoolText {
+    font-size: 30px;
+    color: white;
+  }
+  

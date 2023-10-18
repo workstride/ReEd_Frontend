@@ -5,15 +5,18 @@
   justify-content: center;
   height: 100vh;
   overflow: hidden;
-  /* background-color: #121212; */
+  background-color: #121212;
   position: relative;
 }
 
 .glassmorphism-box {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 20px;
+  border: 2px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.4);
+  border-radius: 10px;
+  z-index: 2;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,6 +55,9 @@ button {
   border: none;
   border-radius: 20px;
   cursor: pointer;
+  width: auto;
+  height:auto;
+  font-size: 15px;
 }
 
 .input-container {

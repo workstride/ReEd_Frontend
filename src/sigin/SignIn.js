@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import "./SignIn.css";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useHistory } from "react-router-dom";
 
-function SignIn() {
-  const navigate = useNavigate();
-
+function SignIn(props) {
   const [email, setEmail] = useState("");
   const [pw, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const history = useHistory();
+
+  const activeEnter = (e) => {
+    if (window.event.keyCode === 13) {
+      handleSignIn();
+    }
+  };
 
   const handleSignIn = async () => {
     try {
@@ -23,20 +28,13 @@ function SignIn() {
       } else {
         const response = await axios.post("api/auth", data);
         const { accessToken, refreshToken, role } = response.data;
-        setMessage(
-          "accessToken: " +
-            accessToken +
-            " refreshToken: " +
-            refreshToken +
-            " role: " +
-            role
-        );
 
-        // 로그인 성공 시 토큰을 Local Storage에 저장
         localStorage.setItem("Access-Token", accessToken);
-
-        // 메인 페이지로 이동
-        navigate("/main");
+        if (role === "HEAD_TEACHER") {
+          history.push("/main");
+        } else {
+          alert("권한이 없습니다.");
+        }
       }
     } catch (error) {
       setMessage("로그인 실패");
@@ -54,19 +52,19 @@ function SignIn() {
             placeholder="이메일 또는 아이디"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            onKeyDown={(e) => activeEnter(e)}
           />
           <input
             type="password"
             placeholder="비밀번호"
             value={pw}
             onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={(e) => activeEnter(e)}
           />
           <button onClick={handleSignIn}>로그인</button>
         </div>
       </div>
-      <p>{message}</p>
     </div>
   );
 }
-
 export default SignIn;
