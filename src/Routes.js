@@ -1,17 +1,17 @@
 import React from "react";
-import { HashRouter, BrowserRouter as Route } from "react-router";
+import { HashRouter, Route, Switch } from "react-router-dom";
 
-import Main from "./componets/main/Main.js";
-import SignIn from "./componets/sigin/SigIn.js";
+import Main from "./components/main/Main.js";
+import SignIn from "./components/signin/SignIn.js";
 
 class Routes extends React.Component {
   render() {
     return (
       <HashRouter>
-        <Routes>
-          <Route path="/" element={<SignIn />} />
+        <Switch>
+          <Route exact path="/" component={SignIn} />
           <Route path="/main" component={Main} />
-        </Routes>
+        </Switch>
       </HashRouter>
     );
   }
