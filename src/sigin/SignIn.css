@@ -1,0 +1,76 @@
+.signin-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #121212;
+  position: relative;
+}
+
+.glassmorphism-box {
+  border: 2px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.4);
+  border-radius: 10px;
+  z-index: 2;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  height: auto; 
+  position: relative;
+  z-index: 1; 
+}
+
+.rocket-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; 
+}
+
+
+input[type="email"],
+input[type="password"] {
+  padding: 10%;
+  width: 110%;
+  margin: 5%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 15px 30px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  width: auto;
+  height:auto;
+  font-size: 15px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+p {
+  margin-top: 10px;
+  font-weight: bold;
+}
