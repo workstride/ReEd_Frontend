@@ -8,8 +8,15 @@
   .QrContainer {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     background-color: gray;
+    height: 100vh;
+  }
+  
+  .QrWrapper {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
   }
   
   

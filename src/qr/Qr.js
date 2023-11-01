@@ -21,19 +21,19 @@ function Qr() {
         memberId: 7,
       };
 
-      console.log("accessToken:", accessToken);
-
       axios
         .post("/api/attendance/generate/qrcode", data, {
-          headers: { "Access-Token": accessToken },
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
         })
         .then((response) => {
           const { date } = response.data;
+          console.log(date);
           setQRCodeValue(date);
         })
         .catch((error) => {
           console.error("Error generating QR code:", error);
-          // 에러 처리
         });
     }
   }, [accessToken]);
