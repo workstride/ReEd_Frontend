@@ -4,9 +4,9 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 function SignIn(props) {
+  localStorage.clear();
   const [email, setEmail] = useState("");
   const [pw, setPassword] = useState("");
-  const [message, setMessage] = useState("");
   const history = useHistory();
 
   const activeEnter = (e) => {
@@ -16,14 +16,13 @@ function SignIn(props) {
   };
 
   const handleSignIn = async () => {
-    localStorage.clear();
     try {
       const data = {
         email: email,
         pw: pw,
       };
       if (email === "") {
-        alert("아이디를 입력해주세요.");
+        alert("이메일을 입력해주세요.");
       } else if (pw === "") {
         alert("비밀번호를 입력해주세요.");
       } else {
@@ -42,7 +41,6 @@ function SignIn(props) {
         }
       }
     } catch (error) {
-      setMessage("로그인 실패");
       console.error("로그인 에러:", error);
     }
   };
@@ -50,11 +48,11 @@ function SignIn(props) {
   return (
     <div className="signin-container">
       <div className="glassmorphism-box">
-        <img src="image/logo.png" alt="logo" />
+        <img src="image/logo.png" alt="logo" className="logo" />
         <div className="input-container">
           <input
             type="email"
-            placeholder="이메일 또는 아이디"
+            placeholder="이메일"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             onKeyDown={(e) => activeEnter(e)}
@@ -69,6 +67,7 @@ function SignIn(props) {
           <button onClick={handleSignIn}>로그인</button>
         </div>
       </div>
+      <img src="image/rocket.png" alt="rocket" className="rocket" />
     </div>
   );
 }
