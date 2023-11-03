@@ -24,6 +24,11 @@ function MenuBar(props) {
             출석
           </Link>
         </li>
+        <li>
+          <Link to="/signin" style={{ color: "white" }}>
+            로그아웃
+          </Link>
+        </li>
       </ul>
     </div>
   );
