@@ -6,7 +6,7 @@ import "./Announcement.css";
 function AnnouncementForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const academyId = 6;
+  const academyId = 3;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -56,7 +56,7 @@ function AnnouncementForm() {
             onChange={(event) => setDescription(event.target.value)}
           />
         </label>
-        <button type="submit">Submit</button>
+        <button type="submit">등록</button>
       </div>
     </form>
   );
