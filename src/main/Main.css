@@ -24,7 +24,7 @@ img{
 }
 
 body {
-  background-image: url("C:\나르샤\프론트\ReEd_Frontend\public\image\background.png");
+  background-image: url("../../public/image/background-2.png");
   background-repeat: no-repeat;
   -webkit-user-select:none;
   -moz-user-select:none;
