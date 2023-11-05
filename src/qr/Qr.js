@@ -37,6 +37,14 @@ function Qr() {
         });
     }
   }, [accessToken]);
+  const [timer, setTimer] = useState(60); // 60초로 타이머를 설정합니다.
+
+  useEffect(() => {
+    if (timer > 0) {
+      const timeout = setTimeout(() => setTimer(timer - 1), 1000);
+      return () => clearTimeout(timeout); // 컴포넌트가 unmount될 때 타이머를 정리합니다.
+    }
+  }, [timer]);
 
   return (
     <div className="check">
@@ -45,6 +53,8 @@ function Qr() {
         <div className="QrWrapper">
           <QRCode size={200} value={qrCodeValue} />
         </div>
+
+        <p>{timer}초 남음</p>
       </div>
     </div>
   );

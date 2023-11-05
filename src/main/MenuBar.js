@@ -9,26 +9,18 @@ function MenuBar(props) {
         <img src="image/logo.png" alt="logo" draggable="false" />
       </div>
       <ul>
-        <li>
-          <Link to="/main" style={{ color: "white" }}>
-            홈
-          </Link>
-        </li>
-        <li>
-          <Link to="/announcement" style={{ color: "white" }}>
-            공지사항
-          </Link>
-        </li>
-        <li>
-          <Link to="/qr" style={{ color: "white" }}>
-            출석
-          </Link>
-        </li>
-        <li>
-          <Link to="/signin" style={{ color: "white" }}>
-            로그아웃
-          </Link>
-        </li>
+        <Link to="/main" style={{ color: "white" }}>
+          <li>홈</li>
+        </Link>
+        <Link to="/announcement" style={{ color: "white" }}>
+          <li>공지사항</li>
+        </Link>
+        <Link to="/qr" style={{ color: "white" }}>
+          <li>출석</li>
+        </Link>
+        <Link to="/signin" style={{ color: "white" }}>
+          <li>로그아웃</li>
+        </Link>
       </ul>
     </div>
   );
