@@ -1,7 +1,7 @@
 .Announcement {
     width: 30%;
-    height: auto;
     margin: auto;
+    height: auto;
     padding: 5%;
     border-radius: 4px;
     background-color: #fff;
@@ -24,14 +24,39 @@
     font-weight: bold;
     margin-bottom: 5%;
 }
+.upload {
 
-.description{
-    font-size: 15px;
-    font-weight: bold;
-    margin-bottom: 5%;
-    width: 150%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 5%;
+    right: 0;
+    bottom: 0;
+}
+
+.descriptionsquare{
+    width: 100%;
+    font-size: 18px;
+    height: 130%;
     align-items: center;
     justify-content: center;
     display: flex;
     border-radius: 10px;
+    display: block;
+    margin-left: 0;
+    font-weight: bold;
 }
+.title {
+    font-size: 24px;
+  }
+  
+  .large {
+    font-size: 36px;
+  }
+  
+  
+  .square {
+    resize: none;
+  }
+  

@@ -9,6 +9,8 @@ function AnnouncementForm() {
   const academyId = 3;
 
   const handleSubmit = (event) => {
+    console.log(title);
+    console.log(description);
     event.preventDefault();
     const announcement = {
       academyId: academyId,
@@ -44,19 +46,23 @@ function AnnouncementForm() {
             type="text"
             value={title}
             placeholder="제목"
-            className="title"
+            className="title large"
             onChange={(event) => setTitle(event.target.value)}
           />
         </label>
         <label>
           <textarea
+            rows="8"
+            cols="45"
             value={description}
             placeholder="내용"
-            className="description"
+            className="descriptionsquare"
             onChange={(event) => setDescription(event.target.value)}
           />
         </label>
-        <button type="submit">등록</button>
+        <button type="submit" className="upload">
+          등록
+        </button>
       </div>
     </form>
   );

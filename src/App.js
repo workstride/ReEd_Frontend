@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import axios from "axios";
 import SignIn from "./sigin/SignIn";
 import Main from "./main/Main";
 import AnnouncementForm from "./announcement/Announcement";
@@ -7,6 +8,47 @@ import Qr from "./qr/Qr";
 import AnimatedCursor from "react-animated-cursor";
 
 function App() {
+  const [accessToken, setAccessToken] = useState("");
+
+  useEffect(() => {
+    const fetchAccessToken = async () => {
+      try {
+        const response = await axios.get("/api/auth/refresh");
+        const { accessToken } = response.data;
+        setAccessToken(accessToken);
+      } catch (error) {
+        console.error("Error fetching access token:", error);
+      }
+    };
+
+    fetchAccessToken();
+  }, []);
+
+  useEffect(() => {
+    const checkTokenExpiration = () => {
+      const tokenExpiration = localStorage.getItem("tokenExpiration");
+      const currentTime = new Date().getTime();
+
+      if (tokenExpiration && currentTime >= tokenExpiration) {
+        refreshAccessToken();
+      }
+    };
+
+    const refreshAccessToken = async () => {
+      try {
+        const response = await axios.post("/api/auth/refresh");
+        const { accessToken } = response.data;
+        setAccessToken(accessToken);
+        const expirationTime = new Date().getTime() + 60 * 60 * 1000; // 1시간 (밀리초 단위)
+        localStorage.setItem("tokenExpiration", expirationTime);
+      } catch (error) {
+        console.error("Error refreshing access token:", error);
+      }
+    };
+
+    checkTokenExpiration();
+  }, [accessToken]);
+
   return (
     <Router>
       <div className="App">
@@ -30,7 +72,10 @@ function App() {
           ]}
         />
         <Route exact path="/" render={() => <Redirect to="/signin" />} />
-        <Route path="/signin" component={SignIn} />
+        <Route
+          path="/signin"
+          render={() => <SignIn setAccessToken={setAccessToken} />}
+        />
         <Route path="/main" component={Main} />
         <Route path="/announcement" component={AnnouncementForm} />
         <Route path="/qr" component={Qr} />

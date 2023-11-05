@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./SignIn.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 function SignIn(props) {
   localStorage.clear();
@@ -32,6 +33,11 @@ function SignIn(props) {
         localStorage.setItem("Access-Token", accessToken);
         localStorage.setItem("Refresh-Token", refreshToken);
         localStorage.setItem("Role", role);
+
+        const decodedToken = jwt_decode(accessToken);
+        const expirationTime = decodedToken.exp * 1000; // exp 값을 밀리초 단위로 변환
+        localStorage.setItem("tokenExpiration", expirationTime);
+
         if (role === "HEAD_TEACHER") {
           history.push("/main");
         } else if (role === "TEACHER") {
@@ -71,4 +77,5 @@ function SignIn(props) {
     </div>
   );
 }
+
 export default SignIn;
