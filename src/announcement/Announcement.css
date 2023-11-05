@@ -20,19 +20,25 @@
 }
 
 .title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 5%;
+  border-radius: 10px;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 5%;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5%;
 }
-.upload {
 
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    margin: 5%;
-    right: 0;
-    bottom: 0;
+.upload {
+  /* position: absolute; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* display: flex; */
+  /* margin: 5%; */
+  margin-top: 5%;
+  margin-left: auto;
+  /* right: 0; */
+  /* bottom: 0; */
 }
 
 .descriptionsquare{
