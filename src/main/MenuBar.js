@@ -6,7 +6,7 @@ function MenuBar(props) {
   return (
     <div className="menuBar" draggable="false">
       <div className="logo">
-        <img src="image/logo.png" alt="logo" draggable="false" />
+        <img src="image/R&E.svg" alt="logo" draggable="false" />
       </div>
       <ul>
         <Link to="/main" style={{ color: "white" }}>
