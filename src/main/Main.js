@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Main.css";
 import MenuBar from "./MenuBar";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function Main() {
   const [schoolList, setSchoolList] = useState([]);
@@ -18,6 +19,14 @@ function Main() {
 
   useEffect(() => {
     fetchSchoolList();
+  }, []);
+  const history = useHistory();
+
+  useEffect(() => {
+    const token = localStorage.getItem("Access-Token");
+    if (!token) {
+      history.push("/signin"); // 로그인 페이지로 이동
+    }
   }, []);
 
   return (
