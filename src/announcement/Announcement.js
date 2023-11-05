@@ -54,6 +54,7 @@ function AnnouncementForm() {
           <textarea
             rows="8"
             cols="45"
+            style={{ resize: "none" }}
             value={description}
             placeholder="내용"
             className="descriptionsquare"

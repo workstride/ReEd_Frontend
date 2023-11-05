@@ -8,7 +8,7 @@ function Main() {
 
   const fetchSchoolList = async () => {
     try {
-      const response = await axios.get("/api/schools");
+      const response = await axios.get("/api/academy");
       const data = response.data;
       setSchoolList(data);
     } catch (error) {
