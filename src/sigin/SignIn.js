@@ -54,7 +54,7 @@ function SignIn(props) {
   return (
     <div className="signin-container">
       <div className="glassmorphism-box">
-        <img src="image/logo.png" alt="logo" className="logo" />
+        <img src="image/R&E.svg" alt="logo" className="logo" />
         <div className="input-container">
           <input
             type="email"
