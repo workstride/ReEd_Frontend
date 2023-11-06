@@ -5,7 +5,7 @@ import "./Main.css";
 function MenuBar(props) {
   return (
     <div className="menuBar" draggable="false">
-      <div className="logo">
+      <div className="logo2">
         <img src="image/R&E.svg" alt="logo" draggable="false" />
       </div>
       <ul>

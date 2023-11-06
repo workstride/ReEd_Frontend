@@ -1,9 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
 
-body {
-  font-family: 'Noto Sans KR', sans-serif;
-}
 
 .menuBar { 
     display: flex; 
@@ -33,6 +30,7 @@ img{
 }
 
 body {
+  font-family: 'Noto Sans KR', sans-serif;
   background-image: url("../../public/image/background.png");
   background-repeat: no-repeat;
   -webkit-user-select:none;
@@ -42,7 +40,7 @@ body {
   }
   
   .mainContainer {
-    height: 100vh; /* 전체 화면 높이로 설정 */
+    height: 100vh;
   }
   
 
