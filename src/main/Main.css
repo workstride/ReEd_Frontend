@@ -43,8 +43,13 @@ body {
     height: 100vh;
   }
   
+  ul img {
+    background-color: #fff;
+    border-radius: 20%;
+  }
 
 .menuBar ul { 
+  margin-top: 10%;
   width: 100%;
   list-style: none; 
   padding: 0; 
@@ -53,6 +58,7 @@ body {
 
 .icon {
   width:10%;
+  margin-right: 2%;
 }
 
 a {
@@ -60,6 +66,7 @@ a {
 }
 
 .menuBar li { 
+  font-size: 25px;
   width: 100%;
   /* padding: 10% 50px;  */
   cursor: pointer; 
